@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby -w
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+
+require 'qt'
+require 'tictactoe-gui/qt_game'
+
+app = Qt::Application.new(ARGV)
+window = TicTacToeGui::QtGame.new
+window.show
+app.exec
