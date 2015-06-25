@@ -1,11 +1,6 @@
-GIT
-  remote: https://github.com/hanster/tic-tac-toe-core.git
-  revision: 7f1654473748f18bd24e39bf9c5ebaf5efbc9320
-  specs:
-    tic_tac_toe_core (0.1.0)
-
 GEM
   remote: https://rubygems.org/
+  remote: https://desolate-caverns-2106.herokuapp.com/
   specs:
     diff-lcs (1.2.5)
     docile (1.1.5)
@@ -30,6 +25,7 @@ GEM
       json (~> 1.8)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
+    tic_tac_toe_core (0.1.0)
 
 PLATFORMS
   ruby
