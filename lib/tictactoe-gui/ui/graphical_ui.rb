@@ -1,7 +1,7 @@
 require 'tictactoe-gui/ui/menu_group'
 require 'tictactoe-gui/ui/gui_builder'
 require 'tictactoe-gui/ui/gui_board'
-require 'tictactoe/game_types'
+require 'tic_tac_toe_core/game_types'
 
 module TicTacToeGui
   module Ui
@@ -52,7 +52,7 @@ module TicTacToeGui
 
       def display_end_game_message(end_game_state)
         message = ''
-        if end_game_state == TicTacToe::Board::DRAW
+        if end_game_state == TicTacToeCore::Board::DRAW
           message = DRAW_MESSAGE
         else
           message = WINNER_MESSAGE % end_game_state
@@ -65,8 +65,8 @@ module TicTacToeGui
       def build_gui_objects
         @gui_builder = GuiBuilder.new(@parent)
 
-        @players_menu = Ui::MenuGroup.new(GAME_TYPES_TEXT, TicTacToe::GameTypes::get_player_options)
-        @board_menu = Ui::MenuGroup.new(BOARD_TYPES_TEXT, TicTacToe::GameTypes::get_board_options)
+        @players_menu = Ui::MenuGroup.new(GAME_TYPES_TEXT, TicTacToeCore::GameTypes::get_player_options)
+        @board_menu = Ui::MenuGroup.new(BOARD_TYPES_TEXT, TicTacToeCore::GameTypes::get_board_options)
         @gui_board = Ui::GuiBoard.new
         @gui_board.register_panel_on_click(@parent, :clicked)
 

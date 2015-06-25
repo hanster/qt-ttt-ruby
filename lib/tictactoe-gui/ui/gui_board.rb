@@ -65,8 +65,8 @@ module TicTacToeGui
       end
 
       def colour_panel(panel)
-        panel.setStyleSheet(X_MARKER_COLOR) if panel.text == TicTacToe::Marker::X_MARKER
-        panel.setStyleSheet(O_MARKER_COLOR) if panel.text == TicTacToe::Marker::O_MARKER
+        panel.setStyleSheet(X_MARKER_COLOR) if panel.text == TicTacToeCore::Marker::X_MARKER
+        panel.setStyleSheet(O_MARKER_COLOR) if panel.text == TicTacToeCore::Marker::O_MARKER
       end
     end
   end

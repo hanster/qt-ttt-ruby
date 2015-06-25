@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'tictactoe', :git => 'https://github.com/hanster/core-ttt-ruby.git'
+gem 'tic_tac_toe_core', :git => 'https://github.com/hanster/tic-tac-toe-core.git'
 gem 'rake'
 gem 'rspec'
 gem 'simplecov'

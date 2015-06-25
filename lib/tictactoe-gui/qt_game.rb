@@ -1,9 +1,9 @@
 require 'Qt'
-require 'tictactoe/game'
-require 'tictactoe/marker'
-require 'tictactoe/factory/players_factory'
-require 'tictactoe/factory/board_factory'
-require 'tictactoe/ai/minimax_ai'
+require 'tic_tac_toe_core/game'
+require 'tic_tac_toe_core/marker'
+require 'tic_tac_toe_core/factory/players_factory'
+require 'tic_tac_toe_core/factory/board_factory'
+require 'tic_tac_toe_core/ai/minimax_ai'
 require 'tictactoe-gui/ui/graphical_ui'
 
 module TicTacToeGui
@@ -21,7 +21,7 @@ module TicTacToeGui
       setObjectName(TICTACTOE)
       setWindowTitle(TICTACTOE)
       resize(600, 600)
-      @ai = TicTacToe::Ai::MinimaxAi.new
+      @ai = TicTacToeCore::Ai::MinimaxAi.new
       @ui = Ui::GraphicalUi.new(self)
     end
 
@@ -35,17 +35,17 @@ module TicTacToeGui
       players = set_up_players
 
       @ui.new_gui_board(board)
-      @game = TicTacToe::Game.new(board, players, @ui)
+      @game = TicTacToeCore::Game.new(board, players, @ui)
     end
 
     def set_up_players
       players_selection = @ui.get_players_selection
-      players = TicTacToe::Factory::PlayersFactory.new(@ui, @ai).create_from_string(players_selection)
+      players = TicTacToeCore::Factory::PlayersFactory.new(@ui, @ai).create_from_string(players_selection)
     end
 
     def set_up_new_board
       board_selection = @ui.get_board_selection
-      TicTacToe::Factory::BoardFactory.new.create_from_string(board_selection)
+      TicTacToeCore::Factory::BoardFactory.new.create_from_string(board_selection)
     end
 
     def player_turn_message
@@ -81,7 +81,7 @@ module TicTacToeGui
     end
 
     def invalid_button_move?(button)
-      button.text == TicTacToe::Marker::X_MARKER || button.text == TicTacToe::Marker::O_MARKER
+      button.text == TicTacToeCore::Marker::X_MARKER || button.text == TicTacToeCore::Marker::O_MARKER
     end
   end
 end

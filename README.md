@@ -25,5 +25,3 @@ To run the actual game, execute the following command:
 ```Shell
 bundle exec bin/tictactoe_qt
 ```
-
-
