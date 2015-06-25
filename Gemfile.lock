@@ -35,4 +35,4 @@ DEPENDENCIES
   rake
   rspec
   simplecov
-  tic_tac_toe_core!
+  tic_tac_toe_core (= 0.1.0)!
