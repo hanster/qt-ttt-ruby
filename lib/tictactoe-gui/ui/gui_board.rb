@@ -6,6 +6,8 @@ module TicTacToeGui
       INDEX_OFFSET = 1
       X_MARKER_COLOR = "color: red"
       O_MARKER_COLOR = "color: blue"
+      X_MARKER = 'X'
+      O_MARKER = 'O'
 
       def initialize
         super(nil)
@@ -65,8 +67,8 @@ module TicTacToeGui
       end
 
       def colour_panel(panel)
-        panel.setStyleSheet(X_MARKER_COLOR) if panel.text == 'X'
-        panel.setStyleSheet(O_MARKER_COLOR) if panel.text == 'O'
+        panel.setStyleSheet(X_MARKER_COLOR) if panel.text == X_MARKER
+        panel.setStyleSheet(O_MARKER_COLOR) if panel.text == O_MARKER
       end
     end
   end
