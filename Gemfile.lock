@@ -25,7 +25,7 @@ GEM
       json (~> 1.8)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
-    tic_tac_toe_core (0.1.0)
+    tic_tac_toe_core (0.2.3)
 
 PLATFORMS
   ruby
@@ -35,4 +35,4 @@ DEPENDENCIES
   rake
   rspec
   simplecov
-  tic_tac_toe_core (= 0.1.0)!
+  tic_tac_toe_core (= 0.2.3)!

@@ -1,7 +1,7 @@
+require 'tic_tac_toe_core/game_setup'
 require 'tictactoe-gui/ui/menu_group'
 require 'tictactoe-gui/ui/gui_builder'
 require 'tictactoe-gui/ui/gui_board'
-require 'tic_tac_toe_core/game_types'
 
 module TicTacToeGui
   module Ui
@@ -12,26 +12,30 @@ module TicTacToeGui
       BOARD_TYPES_TEXT = 'Board Types'
       PLAY_BUTTON_TEXT = 'Play'
       PLAY_BUTTON_NAME = 'play_button'
+      PLAYER_TURN_TEXT = "Turn = Player %s"
 
       def initialize(parent)
         @parent = parent
         build_gui_objects
       end
 
-      def get_players_selection
-        @players_menu.selected_option
+      def draw(board, marker)
+        draw_board(board)
+        display_status(board, marker)
       end
 
-      def get_board_selection
-        @board_menu.selected_option
+      def get_board_type
+        option = @board_menu.selected_option
+        TicTacToeCore::GameSetup::BOARD_OPTIONS.key(option)
       end
 
-      def set_info_label(text)
-        @info_label.text = text
+      def get_players_type
+        option = @players_menu.selected_option
+        TicTacToeCore::GameSetup::PLAYER_OPTIONS.key(option)
       end
 
       def new_gui_board(board)
-        @gui_board.new_board(board.dimension)
+        @gui_board.new_board(board.size)
       end
 
       def click_board_panel(panel_number)
@@ -42,31 +46,37 @@ module TicTacToeGui
 
       end
 
-      def clear_screen
-
-      end
+      private
 
       def draw_board(board)
         @gui_board.update(board)
       end
 
-      def display_end_game_message(end_game_state)
-        message = ''
-        if end_game_state == TicTacToeCore::Board::DRAW
-          message = DRAW_MESSAGE
-        else
-          message = WINNER_MESSAGE % end_game_state
-        end
-        @info_label.text = "Game Over\n\n" + message
+      def display_status(board, marker)
+        @info_label.text = get_status_message(board, marker)
       end
 
-      private
+      def get_status_message(board, marker)
+        if board.finished?
+          "Game Over\n\n" + end_game_message(board)
+        else
+          PLAYER_TURN_TEXT % marker
+        end
+      end
+
+      def end_game_message(board)
+        if board.tie?
+          DRAW_MESSAGE
+        else
+          WINNER_MESSAGE % board.winner
+        end
+      end
 
       def build_gui_objects
         @gui_builder = GuiBuilder.new(@parent)
 
-        @players_menu = Ui::MenuGroup.new(GAME_TYPES_TEXT, TicTacToeCore::GameTypes::get_player_options)
-        @board_menu = Ui::MenuGroup.new(BOARD_TYPES_TEXT, TicTacToeCore::GameTypes::get_board_options)
+        @players_menu = Ui::MenuGroup.new(GAME_TYPES_TEXT, TicTacToeCore::GameSetup::get_player_options)
+        @board_menu = Ui::MenuGroup.new(BOARD_TYPES_TEXT, TicTacToeCore::GameSetup::get_board_options)
         @gui_board = Ui::GuiBoard.new
         @gui_board.register_panel_on_click(@parent, :clicked)
 
