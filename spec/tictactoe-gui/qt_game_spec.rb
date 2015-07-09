@@ -30,13 +30,6 @@ module TicTacToeGui
       expect(find_widget('info_label').text).to eq("Game Over\n\nIt's a draw!")
     end
 
-    it 'plays a 2x2 computer game which will end in an X win' do
-      find_widget('Computer vs Computer').click
-      find_widget('2x2').click
-      find_widget('play_button').click
-      expect(find_widget('info_label').text).to eq("Game Over\n\nX wins!")
-    end
-
     it 'displays the correct player turn text' do
       find_widget('play_button').click
       expect(find_widget('info_label').text).to eq("Turn = Player X")

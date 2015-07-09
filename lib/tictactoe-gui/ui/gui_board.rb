@@ -6,6 +6,8 @@ module TicTacToeGui
       INDEX_OFFSET = 1
       X_MARKER_COLOR = "color: red"
       O_MARKER_COLOR = "color: blue"
+      X_MARKER = 'X'
+      O_MARKER = 'O'
 
       def initialize
         super(nil)
@@ -27,7 +29,7 @@ module TicTacToeGui
 
       def update(board)
         @panels.each_index do |index|
-          @panels[index].text = board.move_available?(index) ? index + INDEX_OFFSET : board.marker_at_position(index)
+          @panels[index].text = board.is_available?(index) ? index + INDEX_OFFSET : board.marker_at(index)
           colour_panel(@panels[index])
         end
       end
@@ -65,8 +67,8 @@ module TicTacToeGui
       end
 
       def colour_panel(panel)
-        panel.setStyleSheet(X_MARKER_COLOR) if panel.text == TicTacToeCore::Marker::X_MARKER
-        panel.setStyleSheet(O_MARKER_COLOR) if panel.text == TicTacToeCore::Marker::O_MARKER
+        panel.setStyleSheet(X_MARKER_COLOR) if panel.text == X_MARKER
+        panel.setStyleSheet(O_MARKER_COLOR) if panel.text == O_MARKER
       end
     end
   end
